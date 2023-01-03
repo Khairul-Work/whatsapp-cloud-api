@@ -10,7 +10,7 @@ export class WebhookController {
   }
 
   @Get()
-  async handleWebhookGet(@Req() request: Request) {
+  async handleWebhookGet(@Req() request: any) {
     console.log(request);
   }
 }
