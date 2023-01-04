@@ -1,6 +1,5 @@
 import { Controller, Post, Body, Req, Get, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
-import * as axios from 'axios';
 import { HttpService } from '@nestjs/axios';
 import { ConfigService } from '@nestjs/config/dist';
 
@@ -33,10 +32,9 @@ export class WebhookController {
           to: from,
           text: { body: 'Hi.. saya khairul' },
         };
-        const requestConfig: axios.AxiosRequestConfig = {
-          headers: {
-            'Content-Type': 'application/json',
-          },
+        const headersRequest = {
+          'Content-Type': 'application/json',
+          // 'Authorization': `Basic ${encodeToken}`,
         };
         this.httpService.post(
           'https://graph.facebook.com/v15.0/' +
@@ -44,12 +42,12 @@ export class WebhookController {
             '/messages?access_token=' +
             token,
           data,
-          requestConfig,
+          { headers: headersRequest },
         ).pipe;
 
-        response.sendStatus(200);
+        response.status(200);
       } else {
-        response.sendStatus(404);
+        response.status(404);
       }
     }
   }
