@@ -1,11 +1,10 @@
+import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { WebhookController } from './webhook.controller';
-import { ConfigService } from '@nestjs/config/dist/config.service';
-import { HttpModule, HttpService } from '@nestjs/axios';
 import { ConfigModule } from '@nestjs/config';
+import { WebhookController } from './webhook.controller';
 
 @Module({
-  imports:[ConfigModule, HttpModule],
+  imports: [ConfigModule, HttpModule],
   controllers: [WebhookController],
 })
 export class WebhookModule {}
